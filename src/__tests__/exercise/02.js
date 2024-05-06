@@ -2,15 +2,15 @@
 // http://localhost:3000/counter
 
 import * as React from 'react'
-import {act} from 'react-dom/test-utils'
-import {createRoot} from 'react-dom/client'
+// import {act} from 'react-dom/test-utils'
+// import {createRoot} from 'react-dom/client'
 // 🐨 import the `render` and `fireEvent` utilities from '@testing-library/react'
 import {render, fireEvent} from '@testing-library/react'
 import Counter from '../../components/counter'
 
 // Status:
 // Exercise - Complete
-// EC 1 - Not complete
+// EC 1 - Complete
 
 // NOTE: this is a new requirement in React 18
 // https://react.dev/blog/2022/03/08/react-18-upgrade-guide#configuring-your-testing-environment
@@ -42,7 +42,8 @@ test('counter increments and decrements when the buttons are clicked', () => {
   const [decrement, increment] = container.querySelectorAll('button')
   const message = container.firstChild.querySelector('div')
 
-  expect(message.textContent).toBe('Current count: 0')
+  // expect(message.textContent).toBe('Current count: 0')
+  expect(message).toHaveTextContent('Current count: 0')
 
   // 🐨 replace the next two statements with `fireEvent.click(button)`
   // 💰 note that you can remove `act` completely!
@@ -53,7 +54,8 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // })
   // act(() => increment.dispatchEvent(incrementClickEvent))
   fireEvent.click(increment)
-  expect(message.textContent).toBe('Current count: 1')
+  // expect(message.textContent).toBe('Current count: 1')
+  expect(message).toHaveTextContent('Current count: 1')
   // const decrementClickEvent = new MouseEvent('click', {
   //   bubbles: true,
   //   cancelable: true,
@@ -61,5 +63,6 @@ test('counter increments and decrements when the buttons are clicked', () => {
   // })
   // act(() => decrement.dispatchEvent(decrementClickEvent))
   fireEvent.click(decrement)
-  expect(message.textContent).toBe('Current count: 0')
+  // expect(message.textContent).toBe('Current count: 0')
+  expect(message).toHaveTextContent('Current count: 0')
 })
